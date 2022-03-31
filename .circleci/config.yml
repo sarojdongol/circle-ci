@@ -37,14 +37,14 @@ workflows:
     when:
       and:
         - not:
-            equal: [<< pipeline.git.branch >>]
+            equal: [main, << pipeline.git.branch >>]
     jobs:
       - say-hello
  
   master-workflow:
     when:
       and:
-        - equal: [main]
+        - equal: [main, << pipeline.git.branch >>]
     jobs:
       - say-bye
     
