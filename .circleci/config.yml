@@ -37,7 +37,7 @@ workflows:
     when:
       and:
         - not:
-            equal: [main]
+            equal: [<< pipeline.git.branch >>]
     jobs:
       - say-hello
  
