@@ -22,7 +22,7 @@ jobs:
       - image: cimg/python:3.9.10
     steps:
     - checkout
-    - run: pip install sqlfluff,dbt-databricks
+    - run: pip install sqlfluff dbt-databricks
     - run: dbt --version         
   say-bye:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
