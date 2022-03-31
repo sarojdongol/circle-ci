@@ -17,6 +17,13 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  run_formatter:
+    docker:
+      - image: cimg/python:3.9.10
+    steps:
+    - checkout
+    - run: pip install sqlfluff dbt-databricks
+    - run: dbt --version         
   say-bye:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -40,6 +47,9 @@ workflows:
             equal: [main, << pipeline.git.branch >> ]
     jobs:
       - say-hello
+      - run_formatter:
+          requires:
+              - say-hello
  
   master-workflow:
     when:
